@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+
+<style>
+
+    .navigationMenu {
+        background-color: rgba(30, 230, 230, 0.1);
+        min-width: 234px;
+        max-width: 234px;
+    }
+
+    .btn2 {
+        display: inline-block;
+        padding: 6px 12px;
+        margin-bottom: 0;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.42857143;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        background-image: none;
+        border: 1px solid transparent;
+        min-width: 220px;
+        border-radius: 5px;
+        text-decoration:none;
+        width:-webkit-fill-available;
+    }
+
+    .btnInactivo {
+        background-color: #033D94;
+        color: white;
+        font-size: large;
+        font-weight: bold;
+        transition: background-color 200ms ease;
+    }
+
+        .btnInactivo:hover {
+            background-color: #09f;
+            border: 1px solid #09f;
+            color: #fff;
+        }
+
+    .btnActivo {
+        background-color: #09f;
+        color: white;
+        font-size: large;
+        font-weight: bold;
+    }
+
+</style>
+
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ITSON</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Sistema_Eval_Comp_Egreso.styles.css" asp-append-version="true" />
+</head>
+
+<body>
+    <div class="row">
+        <div class="col-md-2 d-inline-block navigationMenu p-0">
+            <div class="row justify-content-around mt-2">
+                <img class="img-fluid" style="width: 85%;" src="/images/ITSON_azul.png"  />
+            </div>
+            
+            <div class="row" style="margin-top:100%">
+            </div>
+
+            <a class="btn2 btnActivo" asp-area="" asp-controller="Home" asp-action="EvalCompetencias">Evaluar Competencias</a>
+            <a class="btn2 btnInactivo" asp-area="" asp-controller="Home" asp-action="EvalCompetencias">Consultar Progreso</a>
+
+            <div class="row" style="margin-bottom:100%">
+            </div>
+
+        </div>
+
+        <div class="col-md-10">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+
+    </div>
+
+@*    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - Sistema de Evaluación de Competencias de Egreso - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>*@
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+
+</html>

@@ -1,0 +1,542 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Contacto";
+    Layout = "_Navegacion";
+}
+
+<style>
+    .body-content {
+        background-color:cornflowerblue;
+    }
+
+    .arialA {
+        font-family: Arial;
+        font-size: 18px;
+    }
+
+
+    .arialB {
+        font-family: Arial;
+        font-size: 20px;
+    }
+
+    .siglas {
+        text-align: center;
+        font-size: 32px;
+    }
+
+    .titleIndex {
+        /*-webkit-text-stroke-width: 3px;
+        -webkit-text-stroke-color: #033D94;*/
+        color: white;
+        font-family: Arial;
+        font-weight: bold;
+        font-size: 36px;
+        text-shadow: 5px 0 0 #185DA6,-5px 0 0 #185DA6,0 5px 0 #185DA6,0 -5px 0 #185DA6,4px 4px #185DA6,-4px -4px 0 #185DA6,4px -4px 0 #185DA6,-4px 4px 0 #185DA6;
+    }
+
+    ::placeholder {
+        color: darkgray;
+    }
+
+    label {
+        color: #185DA6;
+        font-weight:bold;
+    }
+
+    body {
+        margin: 0px;
+        background-color: #B5D6F0;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100%;
+    }
+
+    .form-control {
+        display: block;
+        width: 100%;
+        height: 34px;
+        padding: 6px 12px;
+        font-size: 12px;
+        line-height: 1.42857143;
+        color: #555;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ccc;
+        /*border-radius: 4px;*/
+    }
+
+    .error {
+        color: #f00;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 6px 12px;
+        margin-bottom: 0;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.42857143;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        background-image: none;
+        border: 1px solid transparent;
+        border-radius: 30px;
+    }
+
+    .btnprimario {
+        background-color: #09f;
+        color: white;
+        width: 50%;
+        font-size: large;
+        font-weight: bold;
+        transition: background-color 200ms ease;
+    }
+
+        .btnprimario:hover {
+            background-color: #033D94;
+            border: 1px solid #033D94;
+            color: #fff;
+        }
+
+    .select {
+        width: auto;
+    }
+
+    .tTabla {
+        font-size: 1em;
+        border-color:dimgray;
+    }
+
+    .tblTitleBox {
+        background-color: #09f;
+        text-align:center
+    }
+
+    .tblContBox {
+        background-color: #e0e0e0;
+        text-align: center
+    }
+
+
+</style>
+
+
+<div class="row-cols-12 text-end" style="margin-right: 20px">
+    <label class="arialB ">Administrador DTSI</label>
+    <img src="/images/Config.png" width="30px" style="margin-left: 7px"/>
+    <img src="/images/exit.png" width="36px" style="margin-left: 7px" />
+</div>
+
+<div class="row">
+
+    <div class="col-md-3">
+        <label class="arialA">Ciclo</label>
+        <br />
+        <select name="Ciclo">
+            <option>Enero-Mayo 2022</option>
+            <option>Agosto-Diciembre 2022</option>
+            <option>Enero-Mayo 2023</option>
+            <option>Agosto-Diciembre 2023</option>
+            <option>Enero-Mayo 2024</option>
+            <option>Agosto-Diciembre 2024</option>
+        </select>
+        <br />
+        <label class="arialA">Curso</label>
+        <br />
+        <select id="cursoSeleccion" onchange="llenarTabla()" name="Curso">
+            <option>1062C - Programación I</option>
+            <option value="curso1">1064C - Arquitectura de Computadoras</option>
+            <option value="curso2">1065C - Programación II</option>
+            <option value="curso3">1066C - Estructuras de Datos</option>
+            <option value="curso4">1068C - Programación III</option>
+            <option value="curso5">1069C - Bases de Datos</option>
+            <option value="curso6">1072C - Diseño de Software</option>
+            <option value="curso7">1075C - Bases de Datos Avanzadas</option>
+        </select>
+        <br />
+        <label class="arialA">Competencia</label>
+        <br />
+        <select id="competenciaSeleccion" onChange="llenarCompetencia()" name="Competencia">
+            <option value="competencia1">CREACIÓN DE VALOR ORIENTADO AL SERVICIO</option>
+            <option value="competencia2">SUSTENTABILIDAD</option>
+            <option value="competencia3">VIDA SALUDABLE</option>
+        </select>
+
+        <div class="row mt-3">
+            <div class="col-md-5">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr class="tblTitleBox">
+                            <th class="tTabla" scope="col">TIPO DE COMPETENCIA</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tipoCompetencia">
+                        <tr class="tblContBox">
+                            <td class="dTabla">Genérica</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-md-7">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr class ="tblTitleBox">
+                            <th class="tTabla" scope="col">NIVEL DE DOMINIO A EVALUAR</th>
+                        </tr>
+                    </thead>
+                    <tbody id="nivelDominio">
+                        <tr class="tblContBox">
+                            <td class="dTabla">Básico</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3 mt-4">
+        <table class="table table-bordered">
+            <thead>
+                <tr class="tblTitleBox">
+                    <th class="tTabla" scope="col">DESCRIPCIÓN</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="tblContBox">
+                    <td class="dTabla">Fomenta el desarrollo del pensamiento esbelto como una 
+                        filosofía de trabajo aplicando principios y metodologías para optimizar 
+                        el uso de los recursos en la generación de bienes y servicios, de acuerdo 
+                        a los requerimientos del cliente.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-md-2 mt-4">
+        <table class="table table-bordered">
+            <thead>
+                <tr class="tblTitleBox">
+                    <th colspan="2" class="tTabla" scope="col">Criterios de acreditación</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="tblContBox">
+                    <td class="dTabla">≥</td>
+                    <td class="dTabla, bg-light">0.70: Acreditado (AC)</td>
+                </tr>
+                <tr class="tblContBox">
+                    <td class="dTabla">≤</td>
+                    <td class="dTabla, bg-light">0.70: No Acreditado (NA)</td>
+                </tr>
+                <tr class="tblContBox">
+                    <td class="dTabla"></td>
+                    <td class="dTabla, bg-light">0.00: No Evaluado (NE)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-md-4 mt-4">
+        <table class="table table-bordered">
+            <thead>
+                <tr class="tblTitleBox">
+                    <th class="tTabla" scope="col">INSTRUCCIONES</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="tblContBox">
+                    <td class="dTabla">
+                        Estimado maestro, favor de anotar el valor que más se acerque al 
+                        grado de desarrollo que ha alcanzado el alumno en la competencia 
+                        (atributo) Creación de Valor Orientado al Servicio, según la siguiente 
+                        escala: donde 4 es el grado de desempeño más alto, 1 el grado de 
+                        desempeño más bajo y 0 para los alumnos no evaluados, con base 
+                        en los indicadores que se muestran para evaluar.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table table-bordered">
+                <thead>
+                    <tr class="tblTitleBox">
+                        <th class="tTabla" scope="col">PE</th>
+                        <th class="tTabla" scope="col">ID</th>
+                        <th class="tTabla" scope="col">Nombre del Alumno</th>
+                        <th class="tTabla" scope="col">1</th>
+                        <th class="tTabla" scope="col">2</th>
+                        <th class="tTabla" scope="col">3</th>
+                        <th class="tTabla" scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody id="tablaAlumnos">
+                    <tr class="tblContBox">
+                        <td class="dTabla"></td>
+                        <td class="dTabla">00000187054</td>
+                        <td class="dTabla">Argimiro Linares Nieto</td>
+                        <td class="dTabla">4</td>
+                        <td class="dTabla">3</td>
+                        <td class="dTabla">3</td>
+                        <td class="dTabla"></td>
+                    </tr>
+                    <tr class="tblContBox">
+                        <td class="dTabla"></td>
+                        <td class="dTabla">00000232017</td>
+                        <td class="dTabla">Donna Sanches Carreón</td>
+                        <td class="dTabla">4</td>
+                        <td class="dTabla">4</td>
+                        <td class="dTabla">4</td>
+                        <td class="dTabla"></td>
+                    </tr>
+                    <tr class="tblContBox">
+                        <td class="dTabla"></td>
+                        <td class="dTabla">00000162250</td>
+                        <td class="dTabla">Efraim Sierra Alanis</td>
+                        <td class="dTabla">2</td>
+                        <td class="dTabla">3</td>
+                        <td class="dTabla">2</td>
+                        <td class="dTabla"></td>
+                    </tr>
+                    <tr class="tblContBox">
+                        <td class="dTabla"></td>
+                        <td class="dTabla">00000210098</td>
+                        <td class="dTabla">Elenio Laureano Mayonga</td>
+                        <td class="dTabla">4</td>
+                        <td class="dTabla">4</td>
+                        <td contenteditable class="dTabla"></td>
+                        <td class="dTabla"></td>
+                    </tr>
+                    <tr class="tblContBox">
+                        <td class="dTabla"></td>
+                        <td class="dTabla">00000169884</td>
+                        <td class="dTabla">Adrián Revilla Hernández</td>
+                        <td contenteditable class="dTabla"></td>
+                        <td contenteditable class="dTabla"></td>
+                        <td contenteditable class="dTabla"></td>
+                        <td class="dTabla"></td>
+                    </tr>
+                    <tr class="tblContBox">
+                        <td class="dTabla"></td>
+                        <td class="dTabla">00000112412</td>
+                        <td class="dTabla">Elena Gallego Cabañas</td>
+                        <td contenteditable class="dTabla"></td>
+                        <td contenteditable class="dTabla"></td>
+                        <td contenteditable class="dTabla"></td>
+                        <td class="dTabla"></td>
+                    </tr>
+                    <tr class="tblContBox">
+                        <td class="dTabla"></td>
+                        <td class="dTabla">00000183398</td>
+                        <td class="dTabla">Ximena Donoso Silva</td>
+                        <td contenteditable class="dTabla"></td>
+                        <td contenteditable class="dTabla"></td>
+                        <td contenteditable class="dTabla"></td>
+                        <td class="dTabla"></td>
+                    </tr>
+                    <tr class="tblContBox">
+                        <td class="dTabla"></td>
+                        <td class="dTabla">00000186652</td>
+                        <td class="dTabla">Liz Avilés Gutiérrez</td>
+                        <td contenteditable class="dTabla"></td>
+                        <td contenteditable class="dTabla"></td>
+                        <td contenteditable class="dTabla"></td>
+                        <td class="dTabla"></td>
+                    </tr>
+                    <tr class="tblContBox">
+                        <td class="dTabla"></td>
+                        <td class="dTabla">00000203569</td>
+                        <td class="dTabla">Yahir Carvajal Arellano</td>
+                        <td contenteditable class="dTabla"></td>
+                        <td contenteditable class="dTabla"></td>
+                        <td contenteditable class="dTabla"></td>
+                        <td class="dTabla"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-md-4 offset-md-2">
+            <table class="table table-bordered">
+                <thead>
+                    <tr class="tblTitleBox">
+                        <th colspan="2" class="tTabla" scope="col">INDICADORES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="tblContBox">
+                        <td class="dTabla">1</td>
+                        <td class="dTabla, bg-light">
+                            Explica el concepto de valor del cliente con base en los principios 
+                            del pensamiento esbelto a través de un ensayo orientado al campo 
+                            disciplinar (programa educativo).</td>
+                    </tr>
+                    <tr class="tblContBox">
+                        <td class="dTabla">2</td>
+                        <td class="dTabla, bg-light">
+                            Explica el impacto de las actividades que aporten valor y la 
+                            variabilidad de los procesos.</td>
+                    </tr>
+                    <tr class="tblContBox">
+                        <td class="dTabla">3</td>
+                        <td class="dTabla, bg-light">
+                            Ejemplifica el estado actual y futuro de un proceso identificando 
+                            las oportunidades de mejora y el plan de acción a través de casos 
+                            documentales.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+
+</div>
+
+
+
+<script>
+
+    var datosCompetencias = {
+        competencia1: [
+            { tipo: "Genérica", nivel: "Básico"}
+        ],
+        competencia2: [
+            { tipo: "Ciencias Básicas", nivel: "Intermedio" }
+        ],
+        competencia3: [
+            { tipo: "Específica", nivel: "Avanzado" }
+        ]
+    }
+
+    function llenarCompetencia() {
+        var seleccionCompetencia = document.getElementById("competenciaSeleccion");
+        var competenciaSeleccionada = seleccionCompetencia.value;
+        var tipoCompetencia = document.getElementById("tipoCompetencia");
+        var nivelDominio = document.getElementById("nivelDominio");
+        tipoCompetencia.innerHTML = "";
+        nivelDominio.innerHTML = "";
+
+        var competencias = datosCompetencias[competenciaSeleccionada];
+        for (var i = 0; i < competencias.length; i++){
+            var competencia = competencias[i];
+
+            var filaTipo = document.createElement("tr");
+            var filaNivel = document.createElement("tr");
+            var tipo = document.createElement("td");
+            var nivel = document.createElement("td");
+
+            tipo.textContent = competencia.tipo;
+            nivel.textContent = competencia.nivel;
+
+            filaTipo.appendChild(tipo);
+            filaNivel.appendChild(nivel);
+
+            tipoCompetencia.appendChild(filaTipo);
+            nivelDominio.appendChild(filaNivel);
+        }
+    }
+
+    var datosAlumnos = {
+        curso1: [
+            { id: "00000136969", nombre: "Juan Valderrama" },
+            { id: "00000125544", nombre: "Alejandra Rodríguez" },
+            { id: "00000213365", nombre: "Omar López" }
+        ],
+        curso2: [
+            { id: "00000121223", nombre: "Ana María Luquin" },
+            { id: "00000178788", nombre: "Leticia Bonilla" },
+            { id: "00000163559", nombre: "Miguel Marquez" }
+        ],
+        curso3: [
+            { id: "00000103665", nombre: "Juan Castro" },
+            { id: "00000234775", nombre: "Saul Canelo Álvarez" },
+            { id: "00000164598", nombre: "Daniel Olivas Rojas" }
+        ],
+        curso4: [
+            { id: "00000131358", nombre: "Omar Chaparro" },
+            { id: "00000162949", nombre: "Martha Higadera" },
+            { id: "00000197961", nombre: "Juan Escutia" }
+        ],
+        curso5: [
+            { id: "00000130910", nombre: "Carlos Calleja" },
+            { id: "00000234964", nombre: "Viridiana Mendoza" },
+            { id: "00000190910", nombre: "Emiliano Zapata" }
+        ],
+        curso6: [
+            { id: "00000196091", nombre: "Francisco Madero" },
+            { id: "00000126625", nombre: "Delia Cruz" },
+            { id: "00000264929", nombre: "Angelica Sotomayor" }
+        ],
+        curso7: [
+            { id: "00000129061", nombre: "Silvia Pinal" },
+            { id: "00000197956", nombre: "Humberto Eco" },
+            { id: "00000209749", nombre: "Carlos Rojas" }
+        ]
+    };
+
+    function llenarTabla() {
+        var seleccionCurso = document.getElementById("cursoSeleccion");
+        var cursoSeleccionado = seleccionCurso.value;
+        var tablaAlumnos = document.getElementById("tablaAlumnos")
+        tablaAlumnos.innerHTML = "";
+
+        var alumnos = datosAlumnos[cursoSeleccionado];
+        for (var i=0; i < alumnos.length; i++) {
+            var alumno = alumnos[i];
+
+            var fila = document.createElement("tr");
+            var pe = document.createElement("td");
+            var idCelda = document.createElement("td");
+            var nombreCelda = document.createElement("td");
+            var indicador1 = document.createElement("td");
+            var indicador2 = document.createElement("td");
+            var indicador3 = document.createElement("td");
+            var check = document.createElement("td");
+
+            idCelda.textContent = alumno.id;
+            nombreCelda.textContent = alumno.nombre;
+
+            fila.appendChild(pe);
+            fila.appendChild(idCelda);
+            fila.appendChild(nombreCelda);
+            fila.appendChild(indicador1);
+            fila.appendChild(indicador2);
+            fila.appendChild(indicador3);
+            fila.appendChild(check);
+
+            tablaAlumnos.appendChild(fila);
+        }
+    }
+
+    function alerta() {
+        alert("Esta es la pagina de contacto");
+    }
+
+    function GetTime() {
+        var url = "@Url.Action("GetTime","Home")";
+
+        fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            var jdata = JSON.parse(data);
+            alert(jdata["time"]);
+        })
+    }
+</script>

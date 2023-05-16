@@ -1,0 +1,155 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<style>
+    .body-content {
+        background-color:cornflowerblue;
+    }
+
+    .arialB {
+        font-family: Arial;
+        font-size: 20px;
+        
+    }
+
+    .siglas {
+        text-align: center;
+        font-size: 32px;
+    }
+
+    .titleIndex {
+        /*-webkit-text-stroke-width: 3px;
+        -webkit-text-stroke-color: #033D94;*/
+        color: white;
+        font-family: Arial;
+        font-weight: bold;
+        font-size: 36px;
+        text-shadow: 5px 0 0 #185DA6,-5px 0 0 #185DA6,0 5px 0 #185DA6,0 -5px 0 #185DA6,4px 4px #185DA6,-4px -4px 0 #185DA6,4px -4px 0 #185DA6,-4px 4px 0 #185DA6;
+    }
+
+    ::placeholder {
+        color: darkgray;
+    }
+
+    label {
+        color: #185DA6;
+        font-weight:bold;
+    }
+
+    body {
+        margin: 0px;
+        background-color: #B5D6F0;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100%;
+    }
+
+    .form-control {
+        display: block;
+        width: 100%;
+        height: 34px;
+        padding: 6px 12px;
+        font-size: 12px;
+        line-height: 1.42857143;
+        color: #555;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ccc;
+        /*border-radius: 4px;*/
+    }
+
+    .error {
+        color: #f00;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 6px 12px;
+        margin-bottom: 0;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.42857143;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        background-image: none;
+        border: 1px solid transparent;
+        border-radius: 30px;
+    }
+
+    .btnprimario {
+        background-color: #09f;
+        color: white;
+        width: 50%;
+        font-size: large;
+        font-weight: bold;
+        transition: background-color 200ms ease;
+    }
+
+        .btnprimario:hover {
+            background-color: #033D94;
+            border: 1px solid #033D94;
+            color: #fff;
+        }
+
+</style>
+<body>
+    <br />
+    <div class="row">
+        <div class="col-md-6">
+            <h1 class="titleIndex">SISTEMA DE EVALUACIÓN DE COMPETENCIAS DE EGRESO</h1>
+        </div>
+        <div class="col-md-5 mt-1 text-end">
+            <img src="/images/ITSON_azul.png" width="70%" />
+        </div>
+
+        <div class="container">
+            @*--------INICIO DE SESION--------*@
+            <div class="row" style="margin-top:10%">
+            </div>
+
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="panel-default" id="panel-login">
+                        <form id="iniciosesion" accept-charset="utf-8">
+
+                            <label class="arialB">Identificarse:</label>
+                            <input type="email" name="inicio_correo" id="inicio_correo" onkeypress="enterKeyPressed(event)" value="" class="form-control arialB" required placeholder="Ingresar ID de ITSON de 11 Digitos" />
+
+                            <br />
+                            <input type="password" na me="inicio_pass" id="inicio_pass" onkeypress="enterKeyPressed(event)" value="" class="form-control arialB" required minlength="5" placeholder="Ingresar Contraseña" />
+                            <br />
+
+                        </form>
+
+                        <a class="btn btnprimario" asp-area="" asp-controller="Home" asp-action="EvalCompetencias">Iniciar sesion</a>
+                    </div>
+                    <br />
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-5">
+                </div>
+
+                <div class="col-md-6 text-center">
+                    <label class="siglas">DTSI</label><br/>
+                    <label class="arialB">Departamento de Tecnologías y Servicios Informaticos</label>
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+</body>
